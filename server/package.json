@@ -1,0 +1,13 @@
+{
+  "name": "meu_mentor_utfpr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/eduardo-riki/MeuMentorUTFPR.git",
+  "author": "Eduardo Riki, Milena Churata, Rafaela Tieri, Walancy Santos",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^4.11.0",
+    "express": "^4.18.2",
+    "prisma": "^4.11.0"
+  }
+}
