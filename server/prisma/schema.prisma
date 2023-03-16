@@ -9,3 +9,63 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Usuario {
+  id                Int  @id @default(autoincrement())
+  registro          String
+  nome              String
+  email             String
+  senha             String
+  tipo              Int
+  criado_em         DateTime @default(now())
+  postagem          Postagem[]
+  comentario        Comentario[]
+  disciplina        Usuario_Disciplina[]
+
+  @@map("Usuario")
+}
+
+model Disciplina {
+  id                Int @id @default(autoincrement())
+  nome              String
+  periodo           Int
+  optativa          Boolean @default(false)
+  curso             String
+  postagem          Postagem[]
+  usuario           Usuario_Disciplina[]
+
+  @@map("Disciplina")
+}
+
+model Usuario_Disciplina {
+  id                Int @id @default(autoincrement())
+  usuario_id        Int
+  disciplina_id     Int
+  usuario           Usuario @relation(fields: [usuario_id], references: [id])
+  disciplina        Disciplina @relation(fields: [disciplina_id], references: [id])
+
+  @@map("Usuario_Disciplina")
+}
+
+model Comentario {
+  id                Int @id @default(autoincrement())
+  mensagem          String
+  date              DateTime @default(now())
+  usuario_id        Int
+  usuario           Usuario @relation(fields: [usuario_id], references: [id])
+
+  @@map("Comentario")
+}
+
+model Postagem {
+  id                Int @id @default(autoincrement())
+  data              DateTime @default(now())
+  imagem            Bytes
+  pergunta          String 
+  usuario_id        Int
+  disciplina_id     Int
+  disciplina        Disciplina @relation(fields: [disciplina_id], references: [id])
+  usuario           Usuario @relation(fields: [usuario_id], references: [id])
+
+  @@map("Postagem")
+}
