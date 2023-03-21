@@ -21,7 +21,6 @@ model Usuario {
   postagem          Postagem[]
   comentario        Comentario[]
   disciplina        Usuario_Disciplina[]
-
   @@map("Usuario")
 }
 
@@ -33,7 +32,6 @@ model Disciplina {
   curso             String
   postagem          Postagem[]
   usuario           Usuario_Disciplina[]
-
   @@map("Disciplina")
 }
 
@@ -43,7 +41,6 @@ model Usuario_Disciplina {
   disciplina_id     Int
   usuario           Usuario @relation(fields: [usuario_id], references: [id])
   disciplina        Disciplina @relation(fields: [disciplina_id], references: [id])
-
   @@map("Usuario_Disciplina")
 }
 
@@ -53,7 +50,6 @@ model Comentario {
   date              DateTime @default(now())
   usuario_id        Int
   usuario           Usuario @relation(fields: [usuario_id], references: [id])
-
   @@map("Comentario")
 }
 
@@ -66,6 +62,5 @@ model Postagem {
   disciplina_id     Int
   disciplina        Disciplina @relation(fields: [disciplina_id], references: [id])
   usuario           Usuario @relation(fields: [usuario_id], references: [id])
-
   @@map("Postagem")
 }
