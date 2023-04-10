@@ -5,7 +5,7 @@ import {
 
 import {
   SignIn
-} from './pages';
+} from './pages/SignIn';
 
 export const App = () => {
   return (
@@ -15,7 +15,7 @@ export const App = () => {
           exact
           path={SIGNIN}
           element={
-            <SignIn />
+            <SignIn /> 
           }
         />
         <Route path='*' element={<Navigate to={SIGNIN} />} />
